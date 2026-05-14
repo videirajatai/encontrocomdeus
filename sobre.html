@@ -67,53 +67,35 @@
             background: var(--secondary);
         }
 
-        /* ===== HEADER GLASSMORPHISM ===== */
-        .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 1.2rem 2rem;
-            background: rgba(250, 250, 250, 0.7);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-bottom: 1px solid rgba(107, 35, 70, 0.05);
-            z-index: 1000;
-            transition: var(--transition);
-        }
-
-        .header.scrolled {
+        /* ===== TOPO SIMPLES (SEM HEADER FIXO) ===== */
+        .top-bar {
+            background: var(--surface);
             padding: 0.8rem 2rem;
-            background: rgba(255, 255, 255, 0.95);
-            box-shadow: var(--shadow-sm);
-        }
-
-        .nav-container {
-            max-width: 1280px;
-            margin: 0 auto;
+            border-bottom: 1px solid rgba(107, 35, 70, 0.1);
             display: flex;
-            align-items: center;
             justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
-
-        .logo {
+        .logo-area {
             display: flex;
             align-items: center;
             gap: 12px;
             text-decoration: none;
         }
-        .logo img {
+        .logo-area img {
             height: 44px;
             width: auto;
             border-radius: 8px;
         }
-        .logo-text {
+        .logo-area .logo-text {
             font-size: 1.5rem;
             font-weight: 800;
             color: var(--primary);
             line-height: 1.1;
         }
-        .logo-text span {
+        .logo-area .logo-text span {
             display: block;
             font-size: 0.75rem;
             font-weight: 500;
@@ -121,42 +103,23 @@
             letter-spacing: 1px;
             text-transform: uppercase;
         }
-
-        .nav-menu {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-            align-items: center;
-        }
-        .nav-menu a {
-            text-decoration: none;
-            color: var(--text-main);
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: var(--transition);
-        }
-        .nav-menu a:hover {
+        .btn-voltar {
+            background: transparent;
+            border: 1.5px solid var(--primary-light);
             color: var(--primary);
-        }
-
-        .btn-inscricao {
-            background: var(--secondary);
-            color: var(--text-main) !important;
-            padding: 0.6rem 1.4rem;
+            padding: 0.5rem 1.2rem;
             border-radius: var(--radius-pill);
-            font-weight: 700 !important;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
-        .btn-inscricao:hover {
-            background: #E6C24A;
-            transform: translateY(-2px);
-        }
-
-        /* Menu Mobile */
-        .mobile-toggle {
-            display: none;
-            font-size: 1.8rem;
-            color: var(--primary);
-            cursor: pointer;
+        .btn-voltar:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
         }
 
         /* ===== SEÇÕES GERAIS ===== */
@@ -498,27 +461,14 @@
             .banner-cta h2 {
                 font-size: 2rem;
             }
-            .nav-menu {
-                position: fixed;
-                top: 76px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 76px);
-                background: rgba(255, 255, 255, 0.98);
-                backdrop-filter: blur(10px);
-                flex-direction: column;
-                justify-content: center;
-                transition: 0.4s;
-            }
-            .nav-menu.active {
-                left: 0;
-            }
-            .mobile-toggle {
-                display: block;
-            }
         }
 
         @media (max-width: 600px) {
+            .top-bar {
+                padding: 0.8rem 1rem;
+                flex-direction: column;
+                text-align: center;
+            }
             section {
                 padding: 4rem 1.2rem;
             }
@@ -543,21 +493,14 @@
 </head>
 <body>
 
-<header class="header" id="header">
-    <div class="nav-container">
-        <a href="#" class="logo">
-            <img src="logo.png" alt="Logo Videira" onerror="this.style.display='none'">
-            <div class="logo-text">VIDEIRA <span>de Jataí</span></div>
-        </a>
-        <div class="mobile-toggle" id="mobileToggle"><i class="fas fa-bars"></i></div>
-        <ul class="nav-menu" id="navMenu">
-            <li><a href="/">Início</a></li>
-            <li><a href="/sobre">Sobre</a></li>
-            <li><a href="/programacao">Programação</a></li>
-            <li><a href="https://www.videirajatai.com.br/encontrocomdeus" class="btn-inscricao">Quero Participar</a></li>
-        </ul>
-    </div>
-</header>
+<!-- TOPO SIMPLES COM LOGO + BOTÃO VOLTAR (sem o menu fixo) -->
+<div class="top-bar">
+    <a href="/" class="logo-area">
+        <img src="logo.png" alt="Logo Videira" onerror="this.style.display='none'">
+        <div class="logo-text">VIDEIRA <span>de Jataí</span></div>
+    </a>
+    <a href="/" class="btn-voltar"><i class="fas fa-arrow-left"></i> Voltar ao site</a>
+</div>
 
 <main>
     <!-- Hero específico -->
@@ -637,7 +580,7 @@
             <div class="beneficios-grid reveal">
                 <div class="beneficio-card"><div class="beneficio-num">01</div><h3>Cura Física e Emocional</h3><p>O Encontro aborda em vários momentos a cura das emoções, mente e vontade, além de orações para cura física e milagres.</p></div>
                 <div class="beneficio-card"><div class="beneficio-num">02</div><h3>Libertação de Vícios e Pecados</h3><p>Momentos de libertação para quem precisa se livrar de vícios ou de trabalhos espirituais feitos contra você.</p></div>
-                <div class="beneficio-card"><div class="beneficio-num">03</div><h3>Restauration de Sonhos</h3><p>Lugar de restauração, para voltar a ser feliz, a sonhar e viver bem com a vida e com Deus.</p></div>
+                <div class="beneficio-card"><div class="beneficio-num">03</div><h3>Restauração de Sonhos</h3><p>Lugar de restauração, para voltar a ser feliz, a sonhar e viver bem com a vida e com Deus.</p></div>
                 <div class="beneficio-card"><div class="beneficio-num">04</div><h3>O Verdadeiro Evangelho</h3><p>Todas as ministrações seguem uma linha com o intuito de apresentar o pleno evangelho em 3 dias.</p></div>
                 <div class="beneficio-card"><div class="beneficio-num">05</div><h3>O Verdadeiro Amor</h3><p>Sua identidade de filho de Deus é reafirmada o tempo todo, você encontrará um amor incondicional.</p></div>
                 <div class="beneficio-card"><div class="beneficio-num">06</div><h3>Uma Verdadeira Família</h3><p>Oportunidade de conhecer novos amigos e ser inserido na vida da igreja.</p></div>
@@ -716,25 +659,6 @@
 </footer>
 
 <script>
-    // Header scroll effect
-    window.addEventListener('scroll', () => {
-        document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
-    });
-
-    // Mobile menu toggle
-    const mobileToggle = document.getElementById('mobileToggle');
-    const navMenu = document.getElementById('navMenu');
-    mobileToggle.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
-        mobileToggle.innerHTML = navMenu.classList.contains('active') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
-    });
-    document.querySelectorAll('.nav-menu a').forEach(link => {
-        link.addEventListener('click', () => {
-            navMenu.classList.remove('active');
-            mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
-        });
-    });
-
     // Reveal animation on scroll
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
