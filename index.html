@@ -106,6 +106,21 @@
                 }, 300);
             }
         }
+
+        // Função para registrar acesso no contador
+        function registrarAcesso(pagina) {
+          var urlGAS = "https://script.google.com/macros/s/AKfycbxnystn3UqAKnfLUgw7tXS8CzrnpxTS0iax80rhMCRs-T47ibodGYvbRw2KRrtsnCzn/exec";
+          // Usamos ?contador=principal ou ?contador=encontro
+          fetch(urlGAS + "?contador=" + pagina, { method: "GET", mode: "no-cors" })
+            .catch(erro => console.warn("Erro ao registrar acesso:", erro));
+        }
+        
+        // Executa ao carregar a página
+        document.addEventListener("DOMContentLoaded", function() {
+          // Detecta qual página está sendo acessada
+          var pagina = window.location.pathname.includes("encontro") ? "encontro" : "principal";
+          registrarAcesso(pagina);
+        });
     </script>
 
 </body>
